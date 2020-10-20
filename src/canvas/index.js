@@ -84,7 +84,8 @@ function onMouseMove(e) {
   contextMenu.move(e);
 }
 
-export function onCanvasContextMenu(e) {
+export function onContextMenu(e) {
+  e.preventDefault();
   Cell.cells.forEach((cell) => {
     if (
       transferX(cell.x) <= e.clientX &&
