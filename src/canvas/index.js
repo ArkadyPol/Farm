@@ -1,5 +1,5 @@
 import { formatDate, updateBorder } from "../logic.js";
-import { modes, player, border, contextMenu, drag } from "../data.js";
+import { modes, player, border, contextMenu, drag, start } from "../data.js";
 import Cell from "../cell.js";
 import Inv from "../inv.js";
 import Wall from "../wall.js";
@@ -14,8 +14,8 @@ canvas.height = height;
 const centerX = width / 2;
 const centerY = height / 2;
 const ctx = canvas.getContext("2d");
-let startX = width - 300; // начальный Х для инвентаря
-let startY = height - 300; // начальный Y для инвентаря
+start.x = width - 300; // начальный Х для инвентаря
+start.y = height - 300; // начальный Y для инвентаря
 let farmer = new Image();
 farmer.src = "images/Farmer.png";
 
@@ -53,7 +53,7 @@ export function drawGame(time) {
     centerY - farmer.height / 2
   );
   if (modes.isInventory) {
-    drawInventory(ctx, Inv, startX, startY);
+    drawInventory(ctx, Inv, start.x, start.y);
     if (modes.isDragging) {
       let img = new Image();
       img.src = `images/${Inv.dragItem.item.item}.png`;
@@ -77,37 +77,13 @@ export function drawGame(time) {
   ctx.font = "bold 24px serif";
   ctx.fillText(player.money, width - 85, 20);
 }
-export function onCanvasMouseDown(e) {
-  if (modes.isInventory) {
-    if (e.which !== 1) return;
-    let x = e.clientX - startX;
-    let y = e.clientY - startY;
-    let isDrag = Inv.startDrag(x, y);
-    if (isDrag) {
-      modes.isDragging = true;
-      drag.x = e.clientX;
-      drag.y = e.clientY;
-      document.addEventListener("mousemove", onDragMove);
-      document.addEventListener("mouseup", onMouseUp);
-    }
-  }
-}
+
 document.addEventListener("click", onBuyCellClick);
-function onDragMove(e) {
-  drag.x = e.clientX;
-  drag.y = e.clientY;
-}
+
 function onMouseMove(e) {
   contextMenu.move(e);
 }
-function onMouseUp(e) {
-  document.removeEventListener("mousemove", onDragMove);
-  document.removeEventListener("mouseup", onMouseUp);
-  let x = e.clientX - startX;
-  let y = e.clientY - startY;
-  Inv.endDrag(x, y);
-  modes.isDragging = false;
-}
+
 export function onCanvasContextMenu(e) {
   Cell.cells.forEach((cell) => {
     if (

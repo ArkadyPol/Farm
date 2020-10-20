@@ -1,12 +1,9 @@
-import {
-  drawGame,
-  onCanvasMouseDown,
-  onCanvasContextMenu,
-} from "./canvas/index.js";
+import { drawGame, onCanvasContextMenu } from "./canvas/index.js";
 import { modes, border, player } from "./data.js";
 import Cell from "./cell.js";
 import Wall from "./wall.js";
 import { updateBorder } from "./logic.js";
+import { onDragDown } from "./listeners.js";
 updateBorder(Cell, Wall, border);
 let time = new Date(2021, 0, 1, 6);
 function draw() {
@@ -44,7 +41,7 @@ function onKeyDown(e) {
   }
 }
 function onMouseDown(e) {
-  onCanvasMouseDown(e);
+  onDragDown(e);
 }
 
 document.addEventListener("contextmenu", onContextMenu);
