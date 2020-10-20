@@ -1,5 +1,5 @@
 import { formatDate, updateBorder } from "../logic.js";
-import { modes, player, border, contextMenu } from "../data.js";
+import { modes, player, border, contextMenu, drag } from "../data.js";
 import Cell from "../cell.js";
 import Inv from "../inv.js";
 import Wall from "../wall.js";
@@ -16,7 +16,6 @@ const centerY = height / 2;
 const ctx = canvas.getContext("2d");
 let startX = width - 300; // начальный Х для инвентаря
 let startY = height - 300; // начальный Y для инвентаря
-let dragX, dragY;
 let farmer = new Image();
 farmer.src = "images/Farmer.png";
 
@@ -58,7 +57,7 @@ export function drawGame(time) {
     if (modes.isDragging) {
       let img = new Image();
       img.src = `images/${Inv.dragItem.item.item}.png`;
-      ctx.drawImage(img, dragX - 25, dragY - 25);
+      ctx.drawImage(img, drag.x - 25, drag.y - 25);
     }
   }
   if (modes.isContext) {
@@ -86,8 +85,8 @@ export function onCanvasMouseDown(e) {
     let isDrag = Inv.startDrag(x, y);
     if (isDrag) {
       modes.isDragging = true;
-      dragX = e.clientX;
-      dragY = e.clientY;
+      drag.x = e.clientX;
+      drag.y = e.clientY;
       document.addEventListener("mousemove", onDragMove);
       document.addEventListener("mouseup", onMouseUp);
     }
@@ -95,8 +94,8 @@ export function onCanvasMouseDown(e) {
 }
 document.addEventListener("click", onBuyCellClick);
 function onDragMove(e) {
-  dragX = e.clientX;
-  dragY = e.clientY;
+  drag.x = e.clientX;
+  drag.y = e.clientY;
 }
 function onMouseMove(e) {
   contextMenu.move(e);

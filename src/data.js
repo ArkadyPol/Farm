@@ -8,4 +8,5 @@ modes.isInventory = false;
 let player = new Player();
 let contextMenu = new ContextMenu();
 let border = { top: 0, left: 0, right: 0, bottom: 0 };
-export { modes, player, border, contextMenu };
+let drag = { x: 0, y: 0 };
+export { modes, player, border, contextMenu, drag };
