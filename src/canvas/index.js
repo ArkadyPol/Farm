@@ -14,6 +14,7 @@ import Wall from "../wall.js";
 import { drawCell } from "./drawCell.js";
 import drawInventory from "./drawInventory.js";
 import showContextMenu from "./showContextMenu.js";
+import drawBuyCell from "./drawBuyCell.js";
 const canvas = document.querySelector("canvas");
 const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientHeight;
@@ -54,7 +55,7 @@ export function drawGame(time) {
   });
   ctx.fillStyle = "orange";
   ctx.fillRect(transferX(-225), transferY(225), 450, 450);
-  drawBuyCell();
+  drawBuyCell(ctx);
   ctx.drawImage(
     farmer,
     center.x - farmer.width / 2,
@@ -119,19 +120,6 @@ function contextSelect(action1, action2) {
     Cell.activeCell.plantSeed(seed);
     Cell.activeCell = null;
   }
-}
-function drawBuyCell() {
-  let cell = Cell.nextCell();
-  let left = transferX(cell.x) + 90;
-  let top = transferY(cell.y) + 3;
-  ctx.fillStyle = "#9400d3";
-  ctx.fillRect(left, top, 57, 20);
-  ctx.beginPath();
-  ctx.fillStyle = "gold";
-  ctx.arc(left + 8, top + 10, 6, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.font = "18px serif";
-  ctx.fillText(Cell.price, left + 20, top + 15);
 }
 
 function onBuyCellClick(e) {
