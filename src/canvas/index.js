@@ -1,5 +1,13 @@
 import { formatDate, updateBorder } from "../logic.js";
-import { modes, player, border, contextMenu, drag, start } from "../data.js";
+import {
+  modes,
+  player,
+  border,
+  contextMenu,
+  drag,
+  start,
+  center,
+} from "../data.js";
 import Cell from "../cell.js";
 import Inv from "../inv.js";
 import Wall from "../wall.js";
@@ -11,8 +19,8 @@ const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientHeight;
 canvas.width = width;
 canvas.height = height;
-const centerX = width / 2;
-const centerY = height / 2;
+center.x = width / 2;
+center.y = height / 2;
 const ctx = canvas.getContext("2d");
 start.x = width - 300; // начальный Х для инвентаря
 start.y = height - 300; // начальный Y для инвентаря
@@ -49,8 +57,8 @@ export function drawGame(time) {
   drawBuyCell();
   ctx.drawImage(
     farmer,
-    centerX - farmer.width / 2,
-    centerY - farmer.height / 2
+    center.x - farmer.width / 2,
+    center.y - farmer.height / 2
   );
   if (modes.isInventory) {
     drawInventory(ctx, Inv, start.x, start.y);
@@ -126,10 +134,10 @@ function drawBuyCell() {
   ctx.fillText(Cell.price, left + 20, top + 15);
 }
 function transferX(x) {
-  return x + centerX - player.x;
+  return x + center.x - player.x;
 }
 function transferY(y) {
-  return -y + centerY + player.y;
+  return -y + center.y + player.y;
 }
 function onBuyCellClick(e) {
   let cell = Cell.nextCell();
