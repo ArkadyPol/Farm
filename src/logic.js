@@ -1,3 +1,4 @@
+import { center, player } from "./data.js";
 function isEven(n) {
   return !(n % 2);
 }
@@ -29,4 +30,10 @@ export function updateBorder(Cell, Wall, border) {
   border.left = leftX - 450;
   border.right = rightX + 600;
   Wall.createWall(rightX, leftX, topY, bottomY);
+}
+export function transferX(x) {
+  return x + center.x - player.x;
+}
+export function transferY(y) {
+  return -y + center.y + player.y;
 }

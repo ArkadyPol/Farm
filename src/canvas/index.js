@@ -1,4 +1,4 @@
-import { formatDate, updateBorder } from "../logic.js";
+import { formatDate, transferX, transferY, updateBorder } from "../logic.js";
 import {
   modes,
   player,
@@ -133,12 +133,7 @@ function drawBuyCell() {
   ctx.font = "18px serif";
   ctx.fillText(Cell.price, left + 20, top + 15);
 }
-function transferX(x) {
-  return x + center.x - player.x;
-}
-function transferY(y) {
-  return -y + center.y + player.y;
-}
+
 function onBuyCellClick(e) {
   let cell = Cell.nextCell();
   let left = transferX(cell.x) + 90;
