@@ -1,9 +1,10 @@
-import Cell from "./cell.js";
-import { drag, modes, start, player, border } from "./data.js";
-import Inv from "./inv.js";
-import { transferX, transferY, updateBorder } from "./logic.js";
+import Cell from "../cell.js";
+import { player, border, modes, drag, start } from "../data.js";
+import Inv from "../inv.js";
+import { transferX, transferY, updateBorder } from "../logic.js";
+import Wall from "../wall.js";
 
-function onDragDown(e) {
+export function onDragDown(e) {
   if (modes.isInventory) {
     if (e.which !== 1) return;
     let x = e.clientX - start.x;
@@ -41,28 +42,5 @@ export function onBuyCellClick(e) {
         updateBorder(Cell, Wall, border);
       }
     }
-  }
-}
-
-export function onKeyDown(e) {
-  switch (e.key) {
-    case "w":
-      player.moveUp(border);
-      break;
-    case "a":
-      player.moveLeft(border);
-      break;
-    case "s":
-      player.moveDown(border);
-      break;
-    case "d":
-      player.moveRight(border);
-      break;
-    case "i":
-      modes.isInventory = !modes.isInventory;
-      if (modes.isInventory) {
-        document.addEventListener("mousedown", onDragDown);
-      } else document.removeEventListener("mousedown", onDragDown);
-      break;
   }
 }
