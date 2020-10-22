@@ -1,5 +1,5 @@
 import { formatDate, transferX, transferY } from "../logic.js";
-import { modes, player, contextMenu, drag, start, center } from "../data.js";
+import { modes, player, drag, start, center } from "../data.js";
 import Cell from "../cell.js";
 import Inv from "../inv.js";
 import Wall from "../wall.js";
@@ -77,59 +77,4 @@ export function drawGame(time) {
   ctx.fill();
   ctx.font = "bold 24px serif";
   ctx.fillText(player.money, width - 85, 20);
-}
-
-function onMouseMove(e) {
-  contextMenu.move(e);
-}
-
-export function onContextMenu(e) {
-  e.preventDefault();
-  Cell.cells.forEach((cell) => {
-    if (
-      transferX(cell.x) <= e.clientX &&
-      transferX(cell.x) + 150 >= e.clientX &&
-      transferY(cell.y) <= e.clientY &&
-      transferY(cell.y) + 150 >= e.clientY
-    ) {
-      modes.isContext = true;
-      document.addEventListener("mousemove", onMouseMove);
-      document.addEventListener("click", onContextClick);
-      let seeds = Inv.getSeeds();
-      contextMenu.menu = cell.contextMenu(seeds);
-      Cell.activeCell = cell;
-    }
-    contextMenu.init(e);
-  });
-}
-
-function contextSelect(action1, action2) {
-  if (action1 === "Посадить семена") {
-    let seed = action2.split(" ")[0];
-    Inv.plantSeed(seed);
-    Cell.activeCell.plantSeed(seed);
-    Cell.activeCell = null;
-  }
-}
-
-function onContextClick(e) {
-  let { menu, openIndex, contX, contY } = contextMenu;
-  if (menu) {
-    let x = e.clientX - contX - 1;
-    let y = e.clientY - contY - 1;
-    x = Math.floor(x / 150);
-    y = Math.floor(y / 20);
-    if (x === 0 && menu[y] && typeof menu[y] === "string") {
-      contextSelect(menu[y]);
-    }
-    if (x === 1 && openIndex !== null) {
-      let lastIndex = y - openIndex + 1;
-      if (lastIndex > 0 && menu[openIndex][lastIndex])
-        contextSelect(menu[openIndex][0], menu[openIndex][lastIndex]);
-    }
-  }
-  modes.isContext = false;
-  document.removeEventListener("mousemove", onMouseMove);
-  document.removeEventListener("click", onContextClick);
-  contextMenu.openIndex = null;
 }
