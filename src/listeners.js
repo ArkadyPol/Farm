@@ -1,4 +1,4 @@
-import { drag, modes, start, player } from "./data.js";
+import { drag, modes, start, player, border } from "./data.js";
 import Inv from "./inv.js";
 
 function onDragDown(e) {
