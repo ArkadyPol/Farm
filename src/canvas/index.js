@@ -1,13 +1,5 @@
-import { formatDate, transferX, transferY, updateBorder } from "../logic.js";
-import {
-  modes,
-  player,
-  border,
-  contextMenu,
-  drag,
-  start,
-  center,
-} from "../data.js";
+import { formatDate, transferX, transferY } from "../logic.js";
+import { modes, player, contextMenu, drag, start, center } from "../data.js";
 import Cell from "../cell.js";
 import Inv from "../inv.js";
 import Wall from "../wall.js";
@@ -87,8 +79,6 @@ export function drawGame(time) {
   ctx.fillText(player.money, width - 85, 20);
 }
 
-document.addEventListener("click", onBuyCellClick);
-
 function onMouseMove(e) {
   contextMenu.move(e);
 }
@@ -122,19 +112,6 @@ function contextSelect(action1, action2) {
   }
 }
 
-function onBuyCellClick(e) {
-  let cell = Cell.nextCell();
-  let left = transferX(cell.x) + 90;
-  let top = transferY(cell.y) + 3;
-  if (e.clientX > left && e.clientX < left + 57) {
-    if (e.clientY > top && e.clientY < top + 20) {
-      if (player.spentMoney(Cell.price)) {
-        Cell.buyCell();
-        updateBorder(Cell, Wall, border);
-      }
-    }
-  }
-}
 function onContextClick(e) {
   let { menu, openIndex, contX, contY } = contextMenu;
   if (menu) {

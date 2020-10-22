@@ -3,7 +3,7 @@ import {  border } from "./data.js";
 import Cell from "./cell.js";
 import Wall from "./wall.js";
 import { updateBorder } from "./logic.js";
-import { onKeyDown } from "./listeners.js";
+import { onBuyCellClick, onKeyDown } from "./listeners.js";
 updateBorder(Cell, Wall, border);
 let time = new Date(2021, 0, 1, 6);
 function draw() {
@@ -19,4 +19,5 @@ setInterval(() => {
 }, 1000);
 document.addEventListener("keydown", onKeyDown);
 document.addEventListener("contextmenu", onContextMenu);
+document.addEventListener("click", onBuyCellClick);
 

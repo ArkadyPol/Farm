@@ -1,5 +1,7 @@
+import Cell from "./cell.js";
 import { drag, modes, start, player, border } from "./data.js";
 import Inv from "./inv.js";
+import { transferX, transferY, updateBorder } from "./logic.js";
 
 function onDragDown(e) {
   if (modes.isInventory) {
@@ -28,6 +30,20 @@ function onMouseUp(e) {
   Inv.endDrag(x, y);
   modes.isDragging = false;
 }
+export function onBuyCellClick(e) {
+  let cell = Cell.nextCell();
+  let left = transferX(cell.x) + 90;
+  let top = transferY(cell.y) + 3;
+  if (e.clientX > left && e.clientX < left + 57) {
+    if (e.clientY > top && e.clientY < top + 20) {
+      if (player.spentMoney(Cell.price)) {
+        Cell.buyCell();
+        updateBorder(Cell, Wall, border);
+      }
+    }
+  }
+}
+
 export function onKeyDown(e) {
   switch (e.key) {
     case "w":
