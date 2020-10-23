@@ -50,15 +50,12 @@ class Inv {
             dragItem = { item: null, id: null };
             return;
         }
-        if (items[id].item === "none") {
-            if (dragItem.item) {
+        if (dragItem.id != null && dragItem.item) {
+            if (items[id].item === "none") {
                 items[id] = dragItem.item;
             }
-        }
-        else {
-            if (dragItem.id != null && dragItem.item) {
+            else
                 items[dragItem.id] = dragItem.item;
-            }
         }
         dragItem = { item: null, id: null };
     }
