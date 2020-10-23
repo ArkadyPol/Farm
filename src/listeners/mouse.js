@@ -1,8 +1,7 @@
 import Cell from "../cell.js";
-import { player, border, modes, drag, start, contextMenu } from "../data.js";
+import { player, modes, drag, start, contextMenu } from "../data.js";
 import Inv from "../inv.js";
 import { transferX, transferY, updateBorder } from "../logic.js";
-import Wall from "../wall.js";
 
 export function onDragDown(e) {
   if (modes.isInventory) {
@@ -42,7 +41,7 @@ export function onBuyCellClick(e) {
     if (e.clientY > top && e.clientY < top + 20) {
       if (player.spentMoney(Cell.price)) {
         Cell.buyCell();
-        updateBorder(Cell, Wall, border);
+        updateBorder();
       }
     }
   }

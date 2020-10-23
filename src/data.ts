@@ -1,9 +1,10 @@
 import Player from "./player.js";
 import ContextMenu from "./contextMenu.js";
+
 let modes = {
-    isDragging: false,
-    isContext: false,
-    isInventory: false,
+  isDragging: false,
+  isContext: false,
+  isInventory: false,
 };
 let player = new Player();
 let contextMenu = new ContextMenu();

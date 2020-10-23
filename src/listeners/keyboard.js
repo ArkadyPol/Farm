@@ -1,19 +1,19 @@
 import { onDragDown } from "./mouse.js";
-import { player, border, modes } from "../data.js";
+import { player, modes } from "../data.js";
 
 export function onKeyDown(e) {
   switch (e.key) {
     case "w":
-      player.moveUp(border);
+      player.moveUp();
       break;
     case "a":
-      player.moveLeft(border);
+      player.moveLeft();
       break;
     case "s":
-      player.moveDown(border);
+      player.moveDown();
       break;
     case "d":
-      player.moveRight(border);
+      player.moveRight();
       break;
     case "i":
       modes.isInventory = !modes.isInventory;
