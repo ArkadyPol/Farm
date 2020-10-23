@@ -13,7 +13,7 @@ class ContextMenu {
         this.moveY = e.clientY;
     }
     select(action1, action2) {
-        if (action1 === "Посадить семена") {
+        if (action1 === "Посадить семена" && action2) {
             let seed = action2.split(" ")[0];
             Inv.plantSeed(seed);
             if (Cell.activeCell) {
