@@ -1,5 +1,6 @@
+import { center, player } from "./data.js";
 import Inv from "./inv.js";
-import { findDirection } from "./logic.js";
+import { findDirection, transferY } from "./logic.js";
 class Cell {
   static cells: Cell[] = [];
   static activeCell = null as null | Cell;
@@ -64,6 +65,16 @@ class Cell {
     this.cells.forEach((cell) => {
       cell.grow();
     });
+  }
+  static findCell(x: number, y: number) {
+    x = x - center.x + player.x + 75;
+    x = Math.floor(x / 150) * 150 - 75;
+    y = transferY(y) - 75;
+    y = Math.ceil(y / 150) * 150 + 75;
+    let cell = this.cells.find((cell) => {
+      return x === cell.x && y === cell.y;
+    });
+    return cell;
   }
   contextMenu(seeds: Inv[]) {
     if (this.type === "none") {
