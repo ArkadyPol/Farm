@@ -1,5 +1,5 @@
 import { formatDate, transferX, transferY } from "../logic.js";
-import { modes, player, drag, start, center } from "../data.js";
+import { modes, player, drag, start, center, size } from "../data.js";
 import Inv from "../inv.js";
 import drawInventory from "./drawInventory.js";
 import showContextMenu from "./showContextMenu.js";
@@ -7,28 +7,31 @@ import drawBuyCell from "./drawBuyCell.js";
 import drawWall from "./drawWall.js";
 import drawField from "./drawField.js";
 import drawMoney from "./drawMoney.js";
+import onResize from "../listeners/resize.js";
+
 const canvas = document.querySelector("canvas");
-const width = document.documentElement.clientWidth;
-const height = document.documentElement.clientHeight;
+size.width = document.documentElement.clientWidth;
+size.height = document.documentElement.clientHeight;
 let ctx: CanvasRenderingContext2D | null;
 if (canvas) {
-  canvas.width = width;
-  canvas.height = height;
+  canvas.width = size.width;
+  canvas.height = size.height;
   ctx = canvas.getContext("2d");
 }
-center.x = width / 2;
-center.y = height / 2;
-start.x = width - 300; // начальный Х для инвентаря
-start.y = height - 300; // начальный Y для инвентаря
+center.x = size.width / 2;
+center.y = size.height / 2;
+start.x = size.width - 300; // начальный Х для инвентаря
+start.y = size.height - 300; // начальный Y для инвентаря
+window.addEventListener("resize", onResize);
 let farmer = new Image();
 farmer.src = "images/Farmer.png";
 
 export function drawGame(time: Date, fps: number) {
   if (ctx) {
     ctx.fillStyle = "#AAAAAA";
-    ctx.fillRect(0, 0, width, height);
-    drawWall(ctx, width, height);
-    drawField(ctx, width, height);
+    ctx.fillRect(0, 0, size.width, size.height);
+    drawWall(ctx, size.width, size.height);
+    drawField(ctx, size.width, size.height);
     ctx.fillStyle = "orange";
     ctx.fillRect(transferX(-225), transferY(225), 450, 450);
     drawBuyCell(ctx);
@@ -53,19 +56,23 @@ export function drawGame(time: Date, fps: number) {
     if (modes.isFPS) {
       drawFPS(fps);
     }
-    drawMoney(ctx, width);
+    drawMoney(ctx, size.width);
   }
 }
 
 function drawTime(time: Date) {
   let date = formatDate(time);
-  if (ctx) ctx.fillText(date, 20, height - 10);
+  if (ctx) ctx.fillText(date, 20, size.height - 10);
 }
 function drawCoords() {
   if (ctx) {
     ctx.fillStyle = "black";
     ctx.font = "20px serif";
-    ctx.fillText(`x: ${player.x}  y: ${player.y}`, width - 150, height - 10);
+    ctx.fillText(
+      `x: ${player.x}  y: ${player.y}`,
+      size.width - 150,
+      size.height - 10
+    );
   }
 }
 function drawFPS(fps: number) {
