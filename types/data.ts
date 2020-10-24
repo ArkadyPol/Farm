@@ -5,6 +5,7 @@ let modes = {
   isDragging: false,
   isContext: false,
   isInventory: false,
+  isFPS: false
 };
 let player = new Player();
 let contextMenu = new ContextMenu();

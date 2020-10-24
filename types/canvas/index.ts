@@ -23,7 +23,7 @@ start.y = height - 300; // начальный Y для инвентаря
 let farmer = new Image();
 farmer.src = "images/Farmer.png";
 
-export function drawGame(time: Date) {
+export function drawGame(time: Date, fps: number) {
   if (ctx) {
     ctx.fillStyle = "#AAAAAA";
     ctx.fillRect(0, 0, width, height);
@@ -50,6 +50,9 @@ export function drawGame(time: Date) {
     }
     drawCoords();
     drawTime(time);
+    if (modes.isFPS) {
+      drawFPS(fps);
+    }
     drawMoney(ctx, width);
   }
 }
@@ -63,5 +66,11 @@ function drawCoords() {
     ctx.fillStyle = "black";
     ctx.font = "20px serif";
     ctx.fillText(`x: ${player.x}  y: ${player.y}`, width - 150, height - 10);
+  }
+}
+function drawFPS(fps: number) {
+  if (ctx) {
+    ctx.fillStyle = "red";
+    ctx.fillText(`fps: ${fps}`, 20, 20);
   }
 }

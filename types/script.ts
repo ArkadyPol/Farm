@@ -6,16 +6,26 @@ import { onBuyCellClick } from "./listeners/mouse.js";
 import { onContextMenu } from "./listeners/context.js";
 updateBorder();
 let time = new Date(2021, 0, 1, 6);
+let fps = 0;
+let lastFPS = 0;
 function draw() {
-  drawGame(time);
+  drawGame(time, lastFPS);
+  time = new Date(+time + 20_000);
+  if (
+    !time.getMinutes() &&
+    !time.getSeconds() &&
+    time.getHours() > 6 &&
+    time.getHours() <= 22
+  ) {
+    Cell.grow();
+  }
   window.requestAnimationFrame(draw);
+  fps++;
 }
 draw();
 setInterval(() => {
-  time = new Date(+time + 1_200_000);
-  if (!time.getMinutes() && time.getHours() > 6 && time.getHours() <= 22) {
-    Cell.grow();
-  }
+  lastFPS = fps;
+  fps = 0;
 }, 1000);
 document.addEventListener("keydown", onKeyDown);
 document.addEventListener("contextmenu", onContextMenu);

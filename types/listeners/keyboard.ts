@@ -21,5 +21,8 @@ export function onKeyDown(e: KeyboardEvent) {
         document.addEventListener("mousedown", onDragDown);
       } else document.removeEventListener("mousedown", onDragDown);
       break;
+    case "f":
+      modes.isFPS = !modes.isFPS;
+      break;
   }
 }
