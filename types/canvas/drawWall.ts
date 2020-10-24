@@ -1,6 +1,6 @@
 import Wall from "../wall.js";
 import { transferX, transferY } from "../logic.js";
-import { drawCell } from "./drawCell.js";
+import { drawWallCell } from "./drawCell.js";
 
 function drawWall(
   ctx: CanvasRenderingContext2D,
@@ -12,7 +12,7 @@ function drawWall(
     if (transferX(wall.x) > width) return;
     if (transferY(wall.y) < -150) return;
     if (transferY(wall.y) > height) return;
-    drawCell(ctx, transferX(wall.x), transferY(wall.y), "brown", 150);
+    drawWallCell(ctx, transferX(wall.x), transferY(wall.y), "brown", 150);
   });
 }
 export default drawWall;

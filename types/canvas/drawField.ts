@@ -19,7 +19,8 @@ function drawField(
       "green",
       150,
       cell.type,
-      cell.count
+      cell.count,
+      cell.progress
     );
   });
 }

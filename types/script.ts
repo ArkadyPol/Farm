@@ -12,7 +12,7 @@ function draw() {
 }
 draw();
 setInterval(() => {
-  time = new Date(+time + 120000);
+  time = new Date(+time + 1_200_000);
   if (!time.getMinutes() && time.getHours() > 6 && time.getHours() <= 22) {
     Cell.grow();
   }
