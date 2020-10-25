@@ -37,3 +37,7 @@ export function transferX(x: number) {
 export function transferY(y: number) {
   return -y + center.y + player.y;
 }
+export function randomInt(min: number, max: number) {
+  let rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+}

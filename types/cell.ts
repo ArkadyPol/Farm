@@ -1,6 +1,6 @@
 import { center, player } from "./data.js";
 import Inv from "./inv.js";
-import { findDirection, transferY } from "./logic.js";
+import { findDirection, randomInt, transferY } from "./logic.js";
 class Cell {
   static cells: Cell[] = [];
   static activeCell = null as null | Cell;
@@ -96,7 +96,7 @@ class Cell {
     }
   }
   get count() {
-    return this.progress < 95 ? Math.floor(this.progress / 25) : 4;
+    return this.progress < 80 ? Math.floor(this.progress / 20) : 4;
   }
   grow() {
     if (this.type === "none") return;
@@ -104,13 +104,15 @@ class Cell {
       let rand = Math.random();
       switch (this.type) {
         case "wheat":
-          if (rand < 0.43) {
-            this.progress += 5;
+          if (rand < 0.53) {
+            this.progress += randomInt(2, 6);
+            if (this.progress > 100) this.progress = 100;
           }
           break;
         case "potato":
-          if (rand < 0.32) {
-            this.progress += 5;
+          if (rand < 0.4) {
+            this.progress += randomInt(2, 6);
+            if (this.progress > 100) this.progress = 100;
           }
           break;
       }
