@@ -12,16 +12,7 @@ function drawField(
     if (transferX(cell.x) > width) return;
     if (transferY(cell.y) < -150) return;
     if (transferY(cell.y) > height) return;
-    drawCell(
-      ctx,
-      transferX(cell.x),
-      transferY(cell.y),
-      "green",
-      150,
-      cell.type,
-      cell.count,
-      cell.progress
-    );
+    drawCell(ctx, transferX(cell.x), transferY(cell.y), "green", 150, cell);
   });
 }
 export default drawField;

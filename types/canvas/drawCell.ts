@@ -1,3 +1,5 @@
+import Cell from "../cell";
+
 export function drawInvCell(
   ctx: CanvasRenderingContext2D,
   x: number,
@@ -42,19 +44,17 @@ export function drawCell(
   y: number,
   color: string,
   size: number,
-  img: string,
-  count: number,
-  progress: number
+  cell: Cell
 ) {
   ctx.fillStyle = "gold";
   ctx.fillRect(x, y, size, size);
-  if (img !== "none") {
+  if (cell.type !== "none") {
     let image = new Image();
-    image.src = `images/${img}.png`;
+    image.src = `images/${cell.type}.png`;
     let newSize = size - 6;
     ctx.drawImage(
       image,
-      newSize * count,
+      newSize * cell.count,
       0,
       newSize,
       newSize,
@@ -65,10 +65,10 @@ export function drawCell(
     );
     ctx.fillStyle = "white";
     ctx.fillRect(x + 3, y + newSize - 7, newSize, 10);
-    let redWidth = Math.floor((progress / 100) * newSize);
+    let redWidth = Math.floor((cell.progress / 100) * newSize);
     ctx.fillStyle = "red";
     ctx.fillRect(x + 3, y + newSize - 7, redWidth, 10);
-    if (progress === 100) {
+    if (cell.progress === 100) {
       drawStar(ctx, x + size / 2, y + size / 2 - 20);
     }
     return;
