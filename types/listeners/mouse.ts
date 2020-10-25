@@ -22,7 +22,7 @@ function onDragMove(e: MouseEvent) {
   drag.x = e.clientX;
   drag.y = e.clientY;
 }
-export function onMouseMove(e: MouseEvent) {
+export function onContextMove(e: MouseEvent) {
   contextMenu.move(e);
 }
 function onMouseUp(e: MouseEvent) {
@@ -63,7 +63,7 @@ export function onContextClick(e: MouseEvent) {
     }
   }
   modes.isContext = false;
-  document.removeEventListener("mousemove", onMouseMove);
+  document.removeEventListener("mousemove", onContextMove);
   document.removeEventListener("click", onContextClick);
   contextMenu.openIndex = null;
 }
