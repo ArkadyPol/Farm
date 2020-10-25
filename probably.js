@@ -19,10 +19,10 @@ for (let key in numbers) {
 }
 console.log(sum);*/
 let counts = [];
-for (let i = 0; i < 20000; i++) {
+for (let i = 0; i < 25000; i++) {
   let count = 0;
   for (let progress = 0; progress < 100; ) {
-    if (Math.random() < 0.53) {
+    if (Math.random() < 0.199) {
       progress += randomInt(2, 6);
     }
     count++;

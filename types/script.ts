@@ -11,13 +11,8 @@ let lastFPS = 0;
 function draw() {
   drawGame(time, lastFPS);
   time = new Date(+time + 20_000);
-  if (
-    !time.getMinutes() &&
-    !time.getSeconds() &&
-    time.getHours() > 6 &&
-    time.getHours() <= 22
-  ) {
-    Cell.grow();
+  if (!time.getSeconds() && time.getHours() >= 6 && time.getHours() < 22) {
+    if (time.getMinutes() === 0 || time.getMinutes() === 30) Cell.grow();
   }
   window.requestAnimationFrame(draw);
   fps++;

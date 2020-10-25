@@ -104,13 +104,13 @@ class Cell {
       let rand = Math.random();
       switch (this.type) {
         case "wheat":
-          if (rand < 0.53) {
+          if (rand < 0.265) {
             this.progress += randomInt(2, 6);
             if (this.progress > 100) this.progress = 100;
           }
           break;
         case "potato":
-          if (rand < 0.4) {
+          if (rand < 0.199) {
             this.progress += randomInt(2, 6);
             if (this.progress > 100) this.progress = 100;
           }
