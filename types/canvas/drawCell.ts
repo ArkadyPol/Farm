@@ -63,11 +63,13 @@ export function drawCell(
       newSize,
       newSize
     );
-    ctx.fillStyle = "white";
-    ctx.fillRect(x + 3, y + newSize - 7, newSize, 10);
-    let redWidth = Math.floor((cell.progress / 100) * newSize);
-    ctx.fillStyle = "red";
-    ctx.fillRect(x + 3, y + newSize - 7, redWidth, 10);
+    if (cell.isActive) {
+      ctx.fillStyle = "white";
+      ctx.fillRect(x + 3, y + newSize - 7, newSize, 10);
+      let redWidth = Math.floor((cell.progress / 100) * newSize);
+      ctx.fillStyle = "red";
+      ctx.fillRect(x + 3, y + newSize - 7, redWidth, 10);
+    }
     if (cell.progress === 100) {
       drawStar(ctx, x + size / 2, y + size / 2 - 20);
     }

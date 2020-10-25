@@ -5,6 +5,7 @@ class Cell {
   static cells: Cell[] = [];
   static activeCell = null as null | Cell;
   static price = 50;
+  isActive = false;
   type = "none";
   progress = 0;
   x: number;

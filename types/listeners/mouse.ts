@@ -25,6 +25,13 @@ function onDragMove(e: MouseEvent) {
 export function onContextMove(e: MouseEvent) {
   contextMenu.move(e);
 }
+export function onMouseMove(e: MouseEvent) {
+  Cell.cells.forEach((cell) => (cell.isActive = false));
+  let cell = Cell.findCell(e.clientX, e.clientY);
+  if (cell) {
+    cell.isActive = true;
+  }
+}
 function onMouseUp(e: MouseEvent) {
   document.removeEventListener("mousemove", onDragMove);
   document.removeEventListener("mouseup", onMouseUp);
