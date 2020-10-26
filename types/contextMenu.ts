@@ -19,13 +19,23 @@ class ContextMenu {
     this.moveY = e.clientY;
   }
   select(action1: string, action2?: string) {
-    if (action1 === "Посадить семена" && action2) {
-      let seed = action2.split(" ")[0];
-      Inv.plantSeed(seed);
-      if (Cell.activeCell) {
-        Cell.activeCell.plantSeed(seed);
-        Cell.activeCell = null;
-      }
+    switch (action1) {
+      case "Посадить семена":
+        if (action2) {
+          let seed = action2.split(" ")[0];
+          Inv.plantSeed(seed);
+          if (Cell.activeCell) {
+            Cell.activeCell.plantSeed(seed);
+            Cell.activeCell = null;
+          }
+        }
+        break;
+      case "Собрать урожай":
+        if (Cell.activeCell) {
+          Cell.activeCell.harvest();
+          Cell.activeCell = null;
+        }
+        break;
     }
   }
 }

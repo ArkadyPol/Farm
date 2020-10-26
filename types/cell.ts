@@ -84,6 +84,8 @@ class Cell {
         menu[0].push(`${seed.name} ${seed.count} шт.`);
       });
       return menu;
+    } else if (this.progress === 100) {
+      return ["Собрать урожай"];
     }
   }
   plantSeed(seed: string) {
@@ -95,6 +97,10 @@ class Cell {
         this.type = "potato";
         break;
     }
+  }
+  harvest() {
+    this.type = "none";
+    this.progress = 0;
   }
   get count() {
     return this.progress < 80 ? Math.floor(this.progress / 20) : 4;
