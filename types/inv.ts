@@ -25,9 +25,7 @@ class Inv {
     });
     if (item) {
       item.count--;
-      if (item.count < 1) {
-        this.items[id] = new this("none", 0, "-", "-");
-      }
+      if (item.count < 1) this.deleteItem(id);
     }
   }
   static startDrag(x: number, y: number) {
@@ -38,7 +36,7 @@ class Inv {
     let id = this.dragItem.id;
     if (this.items[id].item !== "none") {
       this.dragItem.item = this.items[id];
-      this.items[id] = new this("none", 0, "-", "-");
+      this.deleteItem(id);
       return true;
     }
     return false;
@@ -61,6 +59,9 @@ class Inv {
       } else items[dragItem.id] = dragItem.item;
     }
     dragItem = { item: null, id: null };
+  }
+  static deleteItem(id: number) {
+    this.items[id] = new this("none", 0, "-", "-");
   }
 }
 Inv.addCell("potatoSeed", 10, "seed", "Картофель");
