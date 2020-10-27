@@ -32,6 +32,7 @@ class ContextMenu {
         break;
       case "Собрать урожай":
         if (Cell.activeCell) {
+          Inv.harvest(Cell.activeCell.type);
           Cell.activeCell.harvest();
           Cell.activeCell = null;
         }

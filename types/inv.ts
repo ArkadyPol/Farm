@@ -63,6 +63,32 @@ class Inv {
   static deleteItem(id: number) {
     this.items[id] = new this("none", 0, "-", "-");
   }
+  static harvest(product: string) {
+    product += "Product";
+    let item = this.items.find((x) => x.item === product);
+    if (item) {
+      item.count++;
+    } else {
+      let id = 0;
+      item = this.items.find((x, i) => {
+        id = i;
+        return x.item === "none";
+      });
+      console.log(item);
+      if (item) {
+        let name = "";
+        switch (product) {
+          case "potatoProduct":
+            name = "Картофель";
+            break;
+          case "wheatProduct":
+            name = "Пшеница";
+            break;
+        }
+        this.items[id] = new this(product, 1, "product", name);
+      }
+    }
+  }
 }
 Inv.addCell("potatoSeed", 10, "seed", "Картофель");
 Inv.addCell("wheatSeed", 10, "seed", "Пшеница");
