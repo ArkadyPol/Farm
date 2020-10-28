@@ -57,6 +57,7 @@ export function drawGame(time: Date, fps: number) {
       drawFPS(fps);
     }
     drawMoney(ctx, size.width);
+    drawButton();
   }
 }
 
@@ -86,5 +87,15 @@ function drawFPS(fps: number) {
   if (ctx) {
     ctx.fillStyle = "red";
     ctx.fillText(`fps: ${fps}`, 20, 20);
+  }
+}
+function drawButton() {
+  if (ctx) {
+    ctx.fillStyle = "orange";
+    ctx.fillRect(153, size.height - 30, 84, 28);
+    ctx.fillStyle = "gold";
+    ctx.fillRect(155, size.height - 28, 80, 24);
+    ctx.fillStyle = "black";
+    ctx.fillText(`Рынок`, 160, size.height - 10);
   }
 }
