@@ -62,10 +62,17 @@ export function drawGame(time: Date, fps: number) {
 
 function drawTime(time: Date) {
   let date = formatDate(time);
-  if (ctx) ctx.fillText(date, 20, size.height - 10);
+  if (ctx) {
+    ctx.fillStyle = "white";
+    ctx.fillRect(15, size.height - 28, 135, 24);
+    ctx.fillStyle = "black";
+    ctx.fillText(date, 20, size.height - 10);
+  }
 }
 function drawCoords() {
   if (ctx) {
+    ctx.fillStyle = "white";
+    ctx.fillRect(size.width - 155, size.height - 28, 150, 24);
     ctx.fillStyle = "black";
     ctx.font = "20px serif";
     ctx.fillText(
