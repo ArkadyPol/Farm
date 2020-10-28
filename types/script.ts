@@ -2,7 +2,7 @@ import { drawGame } from "./canvas/index.js";
 import Cell from "./cell.js";
 import { updateBorder } from "./logic.js";
 import { onKeyDown } from "./listeners/keyboard.js";
-import { onBuyCellClick, onMouseMove } from "./listeners/mouse.js";
+import { onButtonClick, onBuyCellClick, onMouseMove } from "./listeners/mouse.js";
 import { onContextMenu } from "./listeners/context.js";
 updateBorder();
 let time = new Date(2021, 0, 1, 6);
@@ -25,4 +25,5 @@ setInterval(() => {
 document.addEventListener("keydown", onKeyDown);
 document.addEventListener("contextmenu", onContextMenu);
 document.addEventListener("click", onBuyCellClick);
+document.addEventListener("click", onButtonClick);
 document.addEventListener("mousemove", onMouseMove);

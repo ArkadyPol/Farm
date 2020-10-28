@@ -1,5 +1,5 @@
 import Cell from "../cell.js";
-import { player, modes, drag, start, contextMenu } from "../data.js";
+import { player, modes, drag, start, contextMenu, size } from "../data.js";
 import Inv from "../inv.js";
 import { transferX, transferY, updateBorder } from "../logic.js";
 
@@ -50,6 +50,16 @@ export function onBuyCellClick(e: MouseEvent) {
         Cell.buyCell();
         updateBorder();
       }
+    }
+  }
+}
+export function onButtonClick(e: MouseEvent) {
+  let { clientX: x, clientY: y } = e;
+  let startX = 155;
+  let startY = size.height - 28;
+  if (x > startX && x < startX + 80) {
+    if (y > startY && y < startY + 24) {
+      console.log(x, y);
     }
   }
 }

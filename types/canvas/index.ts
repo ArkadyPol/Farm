@@ -91,7 +91,7 @@ function drawFPS(fps: number) {
 }
 function drawButton() {
   if (ctx) {
-    ctx.fillStyle = "orange";
+    ctx.fillStyle = "red";
     ctx.fillRect(153, size.height - 30, 84, 28);
     ctx.fillStyle = "gold";
     ctx.fillRect(155, size.height - 28, 80, 24);
