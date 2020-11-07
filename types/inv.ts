@@ -74,7 +74,6 @@ class Inv {
         id = i;
         return x.item === "none";
       });
-      console.log(item);
       if (item) {
         let name = "";
         switch (product) {

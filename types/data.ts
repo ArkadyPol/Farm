@@ -6,6 +6,7 @@ let modes = {
   isContext: false,
   isInventory: false,
   isFPS: false,
+  isMarket: false,
 };
 let player = new Player();
 let contextMenu = new ContextMenu();

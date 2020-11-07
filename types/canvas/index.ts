@@ -8,6 +8,7 @@ import drawWall from "./drawWall.js";
 import drawField from "./drawField.js";
 import drawMoney from "./drawMoney.js";
 import onResize from "../listeners/resize.js";
+import drawMarket from "./drawMarket.js";
 
 const canvas = document.querySelector("canvas");
 size.width = document.documentElement.clientWidth;
@@ -47,6 +48,9 @@ export function drawGame(time: Date, fps: number) {
         img.src = `images/${Inv.dragItem.item.item}.png`;
         ctx.drawImage(img, drag.x - 25, drag.y - 25);
       }
+    }
+    if (modes.isMarket) {
+      drawMarket(ctx, 100, start.y);
     }
     if (modes.isContext) {
       showContextMenu(ctx);

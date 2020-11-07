@@ -59,7 +59,7 @@ export function onButtonClick(e: MouseEvent) {
   let startY = size.height - 28;
   if (x > startX && x < startX + 80) {
     if (y > startY && y < startY + 24) {
-      console.log(x, y);
+      modes.isMarket = !modes.isMarket;
     }
   }
 }

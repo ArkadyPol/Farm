@@ -23,6 +23,25 @@ export function drawInvCell(
   ctx.fillStyle = color;
   ctx.fillRect(x + 3, y + 3, size - 6, size - 6);
 }
+export function drawMarketCell(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  color: string,
+  size: number,
+  img: string
+) {
+  ctx.fillStyle = "gold";
+  ctx.fillRect(x, y, size, size);
+  if (img !== "none") {
+    let image = new Image();
+    image.src = `images/${img}.png`;
+    ctx.drawImage(image, x + 3, y + 3);
+    return;
+  }
+  ctx.fillStyle = color;
+  ctx.fillRect(x + 3, y + 3, size - 6, size - 6);
+}
 function drawStar(ctx: CanvasRenderingContext2D, x: number, y: number) {
   ctx.beginPath();
   ctx.fillStyle = "orange";
