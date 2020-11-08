@@ -1,5 +1,5 @@
 import Cell from "./cell.js";
-import Inv from "./inv.js";
+import Inv from "./items/inv.js";
 
 type MenuElement = string | string[];
 

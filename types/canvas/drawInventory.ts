@@ -1,4 +1,4 @@
-import Inv from "../inv.js";
+import Inv from "../items/inv.js";
 import { drawInvCell } from "./drawCell.js";
 
 function drawInventory(

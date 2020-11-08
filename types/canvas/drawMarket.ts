@@ -1,4 +1,4 @@
-import Market from "../market.js";
+import Market from "../items/market.js";
 import { drawMarketCell } from "./drawCell.js";
 
 function drawMarket(

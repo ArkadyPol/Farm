@@ -1,15 +1,12 @@
-class Inv {
+import Items from "./index.js";
+
+class Inv extends Items {
   static items: Inv[] = [];
   static dragItem = { item: null as null | Inv, id: null as null | number };
-  item: string;
   count: number;
-  type: string;
-  name: string;
   constructor(item: string, count: number, type: string, name: string) {
-    this.item = item;
+    super(item, type, name);
     this.count = count;
-    this.type = type;
-    this.name = name;
   }
   static addCell(item: string, count: number, type: string, name: string) {
     this.items.push(new this(item, count, type, name));

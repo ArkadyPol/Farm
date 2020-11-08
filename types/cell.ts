@@ -1,5 +1,5 @@
 import { center, player } from "./data.js";
-import Inv from "./inv.js";
+import Inv from "./items/inv.js";
 import { findDirection, randomInt, transferY } from "./logic.js";
 class Cell {
   static cells: Cell[] = [];

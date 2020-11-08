@@ -1,6 +1,6 @@
 import Cell from "../cell.js";
 import { player, modes, drag, start, contextMenu, size } from "../data.js";
-import Inv from "../inv.js";
+import Inv from "../items/inv.js";
 import { transferX, transferY, updateBorder } from "../logic.js";
 
 export function onDragDown(e: MouseEvent) {

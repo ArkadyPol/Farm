@@ -1,6 +1,6 @@
 import { formatDate, transferX, transferY } from "../logic.js";
 import { modes, player, drag, start, center, size } from "../data.js";
-import Inv from "../inv.js";
+import Inv from "../items/inv.js";
 import drawInventory from "./drawInventory.js";
 import showContextMenu from "./showContextMenu.js";
 import drawBuyCell from "./drawBuyCell.js";

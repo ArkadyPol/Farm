@@ -1,13 +1,7 @@
-class Market {
+import Items from "./index.js";
+
+class Market extends Items {
   static items: Market[] = [];
-  item: string;
-  type: string;
-  name: string;
-  constructor(item: string, type: string, name: string) {
-    this.item = item;
-    this.type = type;
-    this.name = name;
-  }
   static addCell(item: string, type: string, name: string) {
     this.items.push(new this(item, type, name));
   }

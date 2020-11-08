@@ -1,6 +1,6 @@
 import Cell from "../cell.js";
 import { contextMenu, modes } from "../data.js";
-import Inv from "../inv.js";
+import Inv from "../items/inv.js";
 import { onContextMove, onContextClick } from "./mouse.js";
 
 export function onContextMenu(e: MouseEvent) {
