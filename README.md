@@ -2,7 +2,7 @@
 
 ## Description of game
 
-This is a small survival game, where you can grow plants and sell them on the market. 
+This is a small survival 2D game, where you can grow plants and sell them on the market. 
 
 Monsters appear at night. They can attack farmer or destroy farm.
 
