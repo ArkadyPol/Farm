@@ -30,8 +30,10 @@ class Inv {
   }
   static startDrag(x: number, y: number) {
     x = Math.floor(x / 50);
+    if (x < 0 || x > 3) return false;
     y = Math.floor(y / 50);
-    if (x + y * 4 < 0 || x + y * 4 >= this.items.length) return false;
+    if (y < 0) return false;
+    if (x + y * 4 >= this.items.length) return false;
     this.dragItem.id = x + y * 4;
     let id = this.dragItem.id;
     if (this.items[id].item !== "none") {
@@ -53,7 +55,7 @@ class Inv {
       dragItem = { item: null, id: null };
       return;
     }
-    if (dragItem.id != null && dragItem.item) {
+    if (dragItem.id !== null && dragItem.item) {
       if (items[id].item === "none") {
         items[id] = dragItem.item;
       } else items[dragItem.id] = dragItem.item;
