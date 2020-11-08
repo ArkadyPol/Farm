@@ -30,10 +30,8 @@ class Inv {
   }
   static startDrag(x: number, y: number) {
     x = Math.floor(x / 50);
-    if (x < 0 || x > 3) return false;
     y = Math.floor(y / 50);
-    if (y < 0) return false;
-    if (x + y * 4 >= this.items.length) return false;
+    if (!this.checkExistance(x, y)) return false;
     this.dragItem.id = x + y * 4;
     let id = this.dragItem.id;
     if (this.items[id].item !== "none") {
@@ -44,23 +42,21 @@ class Inv {
     return false;
   }
   static endDrag(x: number, y: number) {
-    x = Math.floor(x / 50);
-    y = Math.floor(y / 50);
-    let id = x + y * 4;
     let { items, dragItem } = this;
-    if (id < 0 || id >= items.length) {
-      if (dragItem.id !== null && dragItem.item) {
-        items[dragItem.id] = dragItem.item;
-      }
-      dragItem = { item: null, id: null };
-      return;
-    }
     if (dragItem.id !== null && dragItem.item) {
+      x = Math.floor(x / 50);
+      y = Math.floor(y / 50);
+      let id = x + y * 4;
+      if (!this.checkExistance(x, y)) {
+        items[dragItem.id] = dragItem.item;
+        this.dragItem = { item: null, id: null };
+        return;
+      }
       if (items[id].item === "none") {
         items[id] = dragItem.item;
       } else items[dragItem.id] = dragItem.item;
+      this.dragItem = { item: null, id: null };
     }
-    dragItem = { item: null, id: null };
   }
   static deleteItem(id: number) {
     this.items[id] = new this("none", 0, "-", "-");
@@ -89,6 +85,12 @@ class Inv {
         this.items[id] = new this(product, 1, "product", name);
       }
     }
+  }
+  static checkExistance(x: number, y: number) {
+    if (x < 0 || x > 3) return false;
+    if (y < 0) return false;
+    if (x + y * 4 >= this.items.length) return false;
+    return true;
   }
 }
 Inv.addCell("potatoSeed", 10, "seed", "Картофель");
