@@ -1,7 +1,6 @@
 import Items from "./index.js";
 
 class Market extends Items {
-  static items: Market[] = [];
   static addCell(item: string, type: string, name: string) {
     this.items.push(new this(item, type, name));
   }

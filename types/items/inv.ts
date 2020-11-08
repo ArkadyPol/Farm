@@ -83,12 +83,6 @@ class Inv extends Items {
       }
     }
   }
-  static checkExistance(x: number, y: number) {
-    if (x < 0 || x > 3) return false;
-    if (y < 0) return false;
-    if (x + y * 4 >= this.items.length) return false;
-    return true;
-  }
 }
 Inv.addCell("potatoSeed", 10, "seed", "Картофель");
 Inv.addCell("wheatSeed", 10, "seed", "Пшеница");
